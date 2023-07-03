@@ -46,4 +46,6 @@ test("DELETE -> 'BASE_URL/:id' should return status 204 ", async()=> {
     const res = await request(app)
     .delete(`${BASE_URL}/${categoryId}`)
     .set("Authorization", `Bearer ${TOKEN}`)
+
+    expect(res.status).toBe(204)
 })

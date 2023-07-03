@@ -3,7 +3,6 @@ const app = require('../app')
 require('../models')
 const BASE_URL = "/api/v1/products"
 const BASE_URL_USER = "/api/v1/users/login"
-const login = require('../utils/login_test')
 const Category = require('../models/Category')
 let TOKEN;
 let productId;
@@ -61,7 +60,7 @@ test("GET FILTER -> 'BASE_URL', should return status 200, res.body.length == 1 a
     const res = await request(app)
         .get(`${BASE_URL}?category=${category.id}`)
 
-    console.log(res.body);
+    console.log(category.id);
     expect(res.status).toBe(200)
     expect(res.body).toHaveLength(1)
     //expect(res.body[0].category).toBeDefined()

@@ -1,5 +1,5 @@
-
-const app = require('../app')
+const request = require('supertest')
+const app = require('../../app')
 
 const loginUserTest = async ({ulr}) => {
     let TOKEN;
