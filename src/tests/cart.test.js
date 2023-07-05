@@ -79,8 +79,7 @@ test("DELETE -> 'BASE_URL', should return code 204", async()=> {
     const res = await request(app)
     .delete(`${BASE_URL}/${cartId}`)
     .set("Authorization", `Bearer ${TOKEN}`)
-
-    console.log(res.body);
+    
     expect(res.status).toBe(204)
     
     await product.destroy()

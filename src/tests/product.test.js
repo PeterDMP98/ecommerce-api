@@ -4,9 +4,11 @@ require('../models')
 const BASE_URL = "/api/v1/products"
 const BASE_URL_USER = "/api/v1/users/login"
 const Category = require('../models/Category')
+const ProductImg = require('../models/productImg')
 let TOKEN;
 let productId;
 let category;
+let productImg;
 
 beforeAll(async () => {
     const user = {
@@ -53,6 +55,7 @@ test("GET -> 'BASE_URL?category = category.id', should return status 200, res.bo
     expect(res.status).toBe(200)
     expect(res.body).toHaveLength(1)
     //expect(res.body[0].category).toBeDefined()
+    //expect(res.body[0].productImgs).toBeDefined()
 })
 
 test("GET FILTER -> 'BASE_URL', should return status 200, res.body.length == 1 and res.body[0] to be defined", async () => {
@@ -60,10 +63,10 @@ test("GET FILTER -> 'BASE_URL', should return status 200, res.body.length == 1 a
     const res = await request(app)
         .get(`${BASE_URL}?category=${category.id}`)
 
-    console.log(category.id);
     expect(res.status).toBe(200)
     expect(res.body).toHaveLength(1)
     //expect(res.body[0].category).toBeDefined()
+    //expect(res.body[0].productImgs).toBeDefined()
 })
 
 test("GET ONE -> 'BASE_URL/:id', should return status 200 and res.body.length == 1", async () => {
@@ -73,6 +76,7 @@ test("GET ONE -> 'BASE_URL/:id', should return status 200 and res.body.length ==
     expect(res.status).toBe(200)
     expect(res.body.title).toBe("Xiaomi")
     //expect(res.body[0].category).toBeDefined()
+    //expect(res.body[0].productImgs).toBeDefined()
 })
 
 test("PUT -> 'BASE_URL/:id', should return status 200 and res.body.title == body.title", async () => {
@@ -89,6 +93,25 @@ test("PUT -> 'BASE_URL/:id', should return status 200 and res.body.title == body
     expect(res.body.title).toBe(productUpdate.title)
 })
 
+test("POST -> 'BASE_URL/:id/images', should return status code 200 and res.body.length ==1", async()=> {
+    
+    const productImagBody = {
+        url:"http://localhost:8080/uploads/firts.jpg",
+        filename:"firts.jpg",
+        productId
+    }
+
+    productImg = await ProductImg.create(productImagBody)
+
+    const res = await request(app)
+    .post(`${BASE_URL}/${productId}/images`)
+    .send([productImg.id])
+    .set("Authorization", `Bearer ${TOKEN}`)
+
+    expect(res.status).toBe(200)
+    expect(res.body).toHaveLength(1)
+})
+
 test("DELETE -> 'BASE_URL/:id', should return status 204", async () => {
     const res = await request(app)
     .delete(`${BASE_URL}/${productId}`)
@@ -96,4 +119,5 @@ test("DELETE -> 'BASE_URL/:id', should return status 204", async () => {
 
     expect(res.status).toBe(204)
     await category.destroy()
+    await productImg.destroy()
 })
