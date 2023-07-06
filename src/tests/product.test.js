@@ -4,7 +4,7 @@ require('../models')
 const BASE_URL = "/api/v1/products"
 const BASE_URL_USER = "/api/v1/users/login"
 const Category = require('../models/Category')
-const ProductImg = require('../models/productImg')
+const ProductImg = require('../models/ProductImg')
 let TOKEN;
 let productId;
 let category;

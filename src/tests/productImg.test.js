@@ -3,8 +3,10 @@ const app = require('../app')
 const path = require("path")
 const BASE_URL = "/api/v1/product_images"
 const BASE_URL_USER = "/api/v1/users/login"
+require('../models')
 let productImgId;
 let TOKEN
+
 
 beforeAll(async()=>{
     const user = {
