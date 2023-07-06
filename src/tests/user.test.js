@@ -1,6 +1,6 @@
 const request = require('supertest')
 const app = require('../app')
-
+require('../models')
 const BASE_URL = "/api/v1/users"
 let TOKEN;
 let userID
