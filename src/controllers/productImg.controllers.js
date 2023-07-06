@@ -1,5 +1,5 @@
 const catchError = require('../utils/catchError');
-const ProductImg = require('../models/productImg');
+const ProductImg = require('../models/Productimg');
 const { uploadToCloudinary, deleteFromCloudinary } = require('../utils/cloudinary');
 
 

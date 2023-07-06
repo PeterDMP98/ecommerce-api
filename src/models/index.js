@@ -1,7 +1,7 @@
 const Cart = require("./Cart");
 const Category = require("./Category");
 const Product = require("./Product");
-const ProductImg = require("./ProductImg");
+const ProductImg = require("./Productimg");
 const Purcharse = require("./Purchase");
 const User = require("./User");
 
