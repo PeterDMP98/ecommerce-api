@@ -1,3 +1,3 @@
 module.exports = {
-    globalTeardown: './src/tests/teardown.js'
+    globalTeardown:'./src/tests/teardown.js'
 }
