@@ -14,7 +14,7 @@ const User = sequelize.define('user', {
     email: {
         type: DataTypes.STRING,
         allowNull: false,
-        unique: true
+        unique:true
     },
     password: {
         type: DataTypes.STRING,
@@ -26,7 +26,7 @@ const User = sequelize.define('user', {
     },
 });
 
-module.exports = User;
+
 
 User.prototype.toJSON = function () {
     const values = Object.assign({}, this.get());
@@ -39,3 +39,5 @@ User.beforeCreate( async(user)=> {
     const hashPassword = await bcrypt.hash(user.password, 10)
     user.password = hashPassword
 })
+
+module.exports = User;

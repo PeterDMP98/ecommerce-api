@@ -15,7 +15,8 @@ app.use(helmet({
     crossOriginResourcePolicy: false,
 }));
 app.use(cors());
-app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(express.static(path.join(__dirname, 'public')));  // /style.css 
 
 app.use('/api/v1', router);
 app.get('/', (req, res) => {

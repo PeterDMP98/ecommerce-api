@@ -1,30 +1,30 @@
-const Cart = require("./Cart");
-const Category = require("./Category");
-const Product = require("./Product");
-const ProductImg = require("./Productimg");
-const Purcharse = require("./Purchase");
-const User = require("./User");
+const Product = require("./Product")
+const Category = require("./Category")
+const Cart = require("./Cart")
+const User = require("./User")
+const Purchase = require("./Purchase")
+const ProductImg = require("./ProductImg")
 
-/* product n-1 categoria */
+//Product -> //categoryId
 Product.belongsTo(Category)
 Category.hasMany(Product)
 
-/*cars 1-1/ users*/
+//Cart -> //userId
 Cart.belongsTo(User)
 User.hasOne(Cart)
 
-/*Cart n-1 products*/
+//Cart -> //productId
 Cart.belongsTo(Product)
 Product.hasMany(Cart)
 
-/*purchese 1-n user */
-Purcharse.belongsTo(User)
-User.hasMany(Purcharse)
+//Purchase -> //userId
+Purchase.belongsTo(User)
+User.hasMany(Purchase)
 
-/*purchase 1-n product*/
-Purcharse.belongsTo(Product)
-Product.hasMany(Purcharse)
+//Purchase -> //productId
+Purchase.belongsTo(Product)
+Product.hasMany(Purchase)
 
-/*productImg 1-N */
+//ProductImg -> //productid
 ProductImg.belongsTo(Product)
 Product.hasMany(ProductImg)
